@@ -1,67 +1,68 @@
+
+
 class Spaceship extends Floater  
 { 
-  int myX, myY, mySpeed, myDirection, corners, myColor;
+  int corners, myColor;
   int [] xCorners, yCorners;
   double myCenterX, myCenterY, myDirectionX, myDirectionY, myPointDirection;
   
-  public Spaceship{ // contructor
+  public Spaceship(){ // contructor
+    myColor = 255;
+    myCenterX = 300;
+    myCenterY = 300; 
+    myDirectionX = 0;
+    myDirectionY = 0;
+    myPointDirection = 0;
     corners = 4;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = -8;
+    xCorners[0] = -16;
     yCorners[0] = -8;
-    xCorners[1] = -8;
-    xCorners[1] = 8;
-    xCorners[2] = 16;
-    yCorners[2] = 0;
-    xCorners[3] = -2;
+    xCorners[1] =16;
+    xCorners[1] =0;
+    xCorners[2] = -16;
+    yCorners[2] = 8;
+    xCorners[3] = -10;
     yCorners[3] = 0;
+   
   }
   public void setX(int x){myCenterX = x;}
-  public int getX(){return myCenterX}
+  public int getX(){return (int)myCenterX;}
   public void setY(int y){myCenterY = y;}
-  public int getY(){return myCenterY;}
+  public int getY(){return (int) myCenterY;}
   
-  public void setDirection(double x){myDirectionX = x;}
-  public double getDirectionX(double x){return myDirectionX;}
+  public void setDirectionX(double x){myDirectionX = x;}
+  public double getDirectionX(){return myDirectionX;}
   public void setDirectionY(double y){myDirectionY = y;}
   public double getDirectionY(){return myDirectionY;}
   public void setPointDirection(int degrees){myPointDirection = degrees;}
   public double getPointDirection(){return myPointDirection;}
   
-  public void move(){
-    //moves towards myDirectionX and myDirectionY
-    myCenterX += myDirectionX;
-    myCenterY += myDirectionY;
+  public void show ()  //Draws the floater at the current position  
+  {             
+    fill(myColor);   
+    stroke(myColor);    
     
-    //wrap around screen
-    if(myCenterX > width){
-      myCenterX = 0
+    //translate the (x,y) center of the ship to the correct position
+    translate((float)myCenterX, (float)myCenterY);
+
+    //convert degrees to radians for rotate()     
+    float dRadians = (float)(myPointDirection*(Math.PI/180));
+    
+    //rotate so that the polygon will be drawn in the correct direction
+    rotate(dRadians);
+    
+    //draw the polygon
+    beginShape();
+    for (int nI = 0; nI < corners; nI++)
+    {
+      vertex(xCorners[nI], yCorners[nI]);
     }
-    else if(myCenterX < 0){
-      myCenterX = width;
-    } 
-    if(myCenterY > height){
-      myCenterY = 0;
-    } else if(myCenterY < 0){
-      myCenterY = height;
-    }
-  }
-  
-  public void accelerate (double dAmount){
-    // accelerates ship in direction of pointer
-    double dRadians = myPointDirection*(Math.PI/180);
-    //change coordinates of travel direction
-    myDirectionX += ((dAmount) * Math.cos(dRadians));
-    myDirectionY += ((dAmount) * Math.sin(dRadians));
-  }
-  
-  public void turn (int nDegreesOfRotation){
-    myPointDirection += nDegreesOfRotation;
-  }
-  
-  
-    
-  }
-    
+    endShape(CLOSE);
+
+    //"unrotate" and "untranslate" in reverse order
+    rotate(-1*dRadians);
+    translate(-1*(float)myCenterX, -1*(float)myCenterY);
+  }   
 }
+    

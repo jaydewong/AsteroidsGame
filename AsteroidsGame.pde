@@ -9,23 +9,19 @@ public void setup()
 public void draw() 
 {
   background(0);
+  bob.move();
   bob.show();
 }
 
 public void keyPressed(){
   if(keyCode == RIGHT){
-    bob.turn(30);
+    bob.turn(20);
   }
   if(keyCode == LEFT){
-    bob.turn(-30);
+    bob.turn(-20);
   }
-  if(keyCode == UP){
-    bob.accelerate(20);
+  if(key == UP){
+    bob.accelerate(1);
   }
-  if(keyCode == DOWN){
-    bob.setX(300);
-    bob.setY(300);
-    bob.setDirectionX(0);
-    bob.setDirectionY(0);
-  }
+  
 }

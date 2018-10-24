@@ -32,11 +32,11 @@ class Spaceship extends Floater
   public int getY(){return (int) myCenterY;}
   
   public void setDirectionX(double x){myDirectionX = x;}
-  public double getDirectionX(){return myDirectionX;}
+  public double getDirectionX(){return (double)myDirectionX;}
   public void setDirectionY(double y){myDirectionY = y;}
-  public double getDirectionY(){return myDirectionY;}
+  public double getDirectionY(){return (double)myDirectionY;}
   public void setPointDirection(int degrees){myPointDirection = degrees;}
-  public double getPointDirection(){return myPointDirection;}
+  public double getPointDirection(){return (double)myPointDirection;}
   
   public void show ()  //Draws the floater at the current position  
   {             
@@ -63,6 +63,7 @@ class Spaceship extends Floater
     //"unrotate" and "untranslate" in reverse order
     rotate(-1*dRadians);
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
-  }   
+  }  
+  
 }
     

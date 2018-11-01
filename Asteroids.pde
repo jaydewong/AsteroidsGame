@@ -1,7 +1,8 @@
 class Asteroids extends Floater{
   public Asteroids(){
     myCenterX = (int)(Math.random()*600);
-    myCenterY = (int)(Math.random()*600);
+    myCenterY = (int)(Math.random()*600); //adding corners causes game crash
+    myColor = color(139,132,119);
   }
   public void setX(int x){myCenterX = x;}
   public int getX(){return (int)myCenterX;}   
@@ -15,8 +16,8 @@ class Asteroids extends Floater{
   public double getPointDirection(){return myPointDirection;}
   
   public void show(){
-    fill(139,132,119);
-    ellipse((float)myCenterX, (float)myCenterY, 40,40);
+    fill(myColor);   
+    stroke(myColor);  
+    ellipse(getX(), getY(), 40,40);
   }
-  
 }

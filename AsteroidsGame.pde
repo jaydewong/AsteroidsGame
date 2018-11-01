@@ -1,6 +1,8 @@
 Spaceship bob = new Spaceship();  //make it a level based game? hit all monsters, then advance 
 Star[] stars = new Star[200];
 Asteroids[] rocks = new Asteroids[5];
+int newSpot = (int)(Math.random()*600); 
+int newSpot2 = (int)(Math.random()*600);
 //your variable declarations here
 public void setup() 
 {
@@ -31,8 +33,6 @@ public void draw()
 }
 
 public void keyPressed(){
-  int newSpot = (int)(Math.random()*600); 
-  int newSpot2 = (int)(Math.random()*600);
   
   if(keyCode == RIGHT){
     bob.turn(20);
@@ -50,5 +50,8 @@ public void keyPressed(){
     bob.setY(newSpot2);
     bob.setPointDirection((int)(Math.random()*360));
   }
-  
 }
+
+
+
+  

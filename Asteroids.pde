@@ -1,5 +1,9 @@
 class Asteroids extends Floater{
+  private double rotation;
   public Asteroids(){
+    rotation = Math.random();
+      if(rotation > 0.5){ rotation = -1; }
+      if(rotation < 0.5){ rotation = 1; }
     myCenterX = (int)(Math.random()*600);
     myCenterY = (int)(Math.random()*600); //adding corners causes game crash
     myColor = color(139,132,119);

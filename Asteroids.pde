@@ -24,4 +24,6 @@ class Asteroids extends Floater{
     stroke(myColor);  
     ellipse(getX(), getY(), 40,40);
   }
+  
+  
 }

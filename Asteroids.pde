@@ -1,12 +1,17 @@
 class Asteroids extends Floater{
-  private double rotation;
+  private double rotSpeed;
   public Asteroids(){
-    rotation = Math.random();
-      if(rotation > 0.5){ rotation = -1; }
-      if(rotation < 0.5){ rotation = 1; }
+    rotSpeed = Math.random();
+      if(rotSpeed > 0.5){ rotSpeed = -1; }
+      if(rotSpeed < 0.5){ rotSpeed = 1; }
     myCenterX = (int)(Math.random()*600);
     myCenterY = (int)(Math.random()*600); //adding corners causes game crash
     myColor = color(139,132,119);
+    corners = 6;
+    int[] xS = {-11, 7, 13, 6, -11, -5};
+    int[] yS = {-8, -8, 0, 10, 8, 0};
+    xCorners = xS;
+    yCorners = yS;
   }
   public void setX(int x){myCenterX = x;}
   public int getX(){return (int)myCenterX;}   
@@ -19,11 +24,9 @@ class Asteroids extends Floater{
   public void setPointDirection(int degrees){myPointDirection = degrees;}   
   public double getPointDirection(){return myPointDirection;}
   
-  public void show(){
-    fill(myColor);   
-    stroke(myColor);  
-    ellipse(getX(), getY(), 40,40);
+  public void move(){
+    turn((int) rotSpeed);
+    super.move();
   }
-  
   
 }

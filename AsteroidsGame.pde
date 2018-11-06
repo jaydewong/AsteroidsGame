@@ -1,8 +1,6 @@
 Spaceship bob = new Spaceship();  //make it a level based game? hit all monsters, then advance 
-Star[] stars = new Star[200];
+Star[] stars = new Star[200]; //use get color to collide with asteroids?
 Asteroids[] rocks = new Asteroids[5];
-int newSpot = (int)(Math.random()*600); 
-int newSpot2 = (int)(Math.random()*600);
 //your variable declarations here
 public void setup() 
 {
@@ -43,11 +41,11 @@ public void keyPressed(){
   if(keyCode == 38){ //up key
     bob.accelerate(0.1);
   }
-  if(keyCode == 40){ //down //FIGURE OUT:  how to make it stop
+  if(keyCode == 40){ //down 
     bob.setDirectionX(0);
     bob.setDirectionY(0);
-    bob.setX(newSpot);
-    bob.setY(newSpot2);
+    bob.setX((int)(Math.random()*600));
+    bob.setY((int)(Math.random()*600));
     bob.setPointDirection((int)(Math.random()*360));
   }
 }

@@ -1,6 +1,6 @@
 Spaceship bob = new Spaceship();  //make it a level based game? hit all monsters, then advance 
 Star[] stars = new Star[200]; //use get color to collide with asteroids?
-Asteroids[] rocks = new Asteroids[5];
+ArrayList <Asteroids> rocks = new ArrayList <Asteroids>();
 //your variable declarations here
 public void setup() 
 {
@@ -9,22 +9,28 @@ public void setup()
   for(int i = 0; i < stars.length; i++){
      stars[i] = new Star();
    }
-  for(int i = 0; i < rocks.length; i++){
-     rocks[i] = new Asteroids();
+  for(int i = 0; i < 10 ; i++){
+     rocks.add(new Asteroids());
    }
   //your code here
 }
 public void draw() 
 {
+  float d;
   background(0);
   for(int i = 0; i < stars .length; i++){
    stars[i].show();
   }
-  for(int i = 0; i < rocks .length; i++){
-    rocks[i].setDirectionX((int)(Math.random()*3));
-    rocks[i].setDirectionY((int)(Math.random()*3));
-    rocks[i].move();     
-    rocks[i].show();
+  for(int i = 0; i < rocks.size(); i++){ 
+    rocks.get(i).move();     
+    rocks.get(i).show();
+    d = dist((float)rocks.get(i).getX(), (float)rocks.get(i).getY(), (float)bob.getX(), (float)bob.getY());
+    if(d <20){
+      rocks.remove(rocks.get(i));
+    }
+  }
+  if(rocks.size() < 10){
+    rocks.add(new Asteroids());
   }
   bob.move();
   bob.show();

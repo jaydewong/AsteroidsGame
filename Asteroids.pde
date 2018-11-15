@@ -8,6 +8,8 @@ class Asteroids extends Floater{
     myCenterY = (int)(Math.random()*600); //adding corners causes game crash
     myColor = color(139,132,119);
     corners = 6;
+    myDirectionX = Math.random()*6 - 3;
+    myDirectionY = Math.random()*6 - 3;
     int[] xS = {-11, 7, 13, 6, -11, -5};
     int[] yS = {-8, -8, 0, 10, 8, 0};
     xCorners = xS;

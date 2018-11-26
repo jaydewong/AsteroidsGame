@@ -29,9 +29,9 @@ public void draw()
       rocks.remove(rocks.get(i));
     }
   }
-  if(rocks.size() < 10){
-    rocks.add(new Asteroids());
-  }
+  //if(rocks.size() < 10){
+    //rocks.add(new Asteroids());
+  //}
   bob.move();
   bob.show();
 }

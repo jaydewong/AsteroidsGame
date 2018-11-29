@@ -1,6 +1,8 @@
 Spaceship bob = new Spaceship();  //make it a level based game? hit all monsters, then advance 
 Star[] stars = new Star[200]; //use get color to collide with asteroids?
 ArrayList <Asteroids> rocks = new ArrayList <Asteroids>();
+Bullet b1 = new Bullet(bob);
+boolean fire;
 //your variable declarations here
 public void setup() 
 {
@@ -29,11 +31,13 @@ public void draw()
       rocks.remove(rocks.get(i));
     }
   }
-  //if(rocks.size() < 10){
-    //rocks.add(new Asteroids());
-  //}
+  if(fire = true){
+    b1.move();
+  }
   bob.move();
-  bob.show();
+  bob.show();  
+  b1.show();
+  
 }
 
 public void keyPressed(){
@@ -53,6 +57,9 @@ public void keyPressed(){
     bob.setX((int)(Math.random()*600));
     bob.setY((int)(Math.random()*600));
     bob.setPointDirection((int)(Math.random()*360));
+  }
+  if(keyCode == 32){ //space
+    fire = true;
   }
 }
 

@@ -30,13 +30,13 @@ public void draw()
     if(d <20){
       rocks.remove(rocks.get(i));
     }
-  }
-  if(fire = true){
+  }  
+  if(fire == true){
     b1.move();
+    b1.show();
   }
   bob.move();
   bob.show();  
-  b1.show();
   
 }
 
@@ -58,7 +58,8 @@ public void keyPressed(){
     bob.setY((int)(Math.random()*600));
     bob.setPointDirection((int)(Math.random()*360));
   }
-  if(keyCode == 32){ //space
+  if(key == 'b'){
+    b1 = new Bullet(bob);
     fire = true;
   }
 }

@@ -1,8 +1,9 @@
 Spaceship bob = new Spaceship();  //make it a level based game? hit all monsters, then advance 
 Star[] stars = new Star[200]; //use get color to collide with asteroids?
 ArrayList <Asteroids> rocks = new ArrayList <Asteroids>();
-Bullet b1 = new Bullet(bob);
+ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 boolean fire;
+int sum = 0;
 //your variable declarations here
 public void setup() 
 {
@@ -32,8 +33,13 @@ public void draw()
     }
   }  
   if(fire == true){
-    b1.move();
-    b1.show();
+    for(int i = 0; i < sum; i++){
+    bullets.get(i).move(); //need to make it i
+    bullets.get(i).show();
+    }
+    //if(bullets.get(0).getX() > 600 || bullets.get(0).getX() < 600 || bullets.get(0).getY() > 600 || bullets.get(0).getY() < 600){
+    //  bullets.remove(bullets.get(0));
+    //}
   }
   bob.move();
   bob.show();  
@@ -59,7 +65,8 @@ public void keyPressed(){
     bob.setPointDirection((int)(Math.random()*360));
   }
   if(key == 'b'){
-    b1 = new Bullet(bob);
+    bullets.add(new Bullet(bob)); 
+    sum++;//use a sum to keep track of bullets? 
     fire = true;
   }
 }

@@ -3,7 +3,9 @@ Star[] stars = new Star[200]; //use get color to collide with asteroids?
 ArrayList <Asteroids> rocks = new ArrayList <Asteroids>();
 ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 boolean fire;
-int sum = 0;
+int sum = 0; 
+int health = 100;
+float d;
 //your variable declarations here
 public void setup() 
 {
@@ -19,30 +21,18 @@ public void setup()
 }
 public void draw() 
 {
-  float d;
   background(0);
+  fill(255);
+  textSize(20);
+  text("Ship health: " + health, 20,30);
   for(int i = 0; i < stars .length; i++){
    stars[i].show();
-  }
-  for(int i = 0; i < rocks.size(); i++){ 
-    rocks.get(i).move();     
-    rocks.get(i).show();
-    d = dist((float)rocks.get(i).getX(), (float)rocks.get(i).getY(), (float)bob.getX(), (float)bob.getY());
-    if(d <20){
-      rocks.remove(rocks.get(i));
-    }
-  }  
-  if(fire == true){
-    for(int i = 0; i < sum; i++){
-    bullets.get(i).move(); //need to make it i
-    bullets.get(i).show();
-    }
-    //if(bullets.get(0).getX() > 600 || bullets.get(0).getX() < 600 || bullets.get(0).getY() > 600 || bullets.get(0).getY() < 600){
-    //  bullets.remove(bullets.get(0));
-    //}
-  }
+  }    
+  asteroidMove();
+  shoot();
   bob.move();
-  bob.show();  
+  bob.show();
+  shot();
   
 }
 
@@ -66,8 +56,43 @@ public void keyPressed(){
   }
   if(key == 'b'){
     bullets.add(new Bullet(bob)); 
-    sum++;//use a sum to keep track of bullets? 
     fire = true;
+  }
+}
+
+public void shot(){
+  for(int i = 0; i< bullets.size(); i++){ //size always increasing??
+    for(int j = 0; j < rocks.size(); j++){
+      if(dist(rocks.get(j).getX(), rocks.get(j).getY(), bullets.get(i).getX(), bullets.get(i).getY())<25){
+        rocks.remove(j);
+        bullets.remove(i);
+        break;
+     }
+  }
+}
+}
+
+public void asteroidMove(){
+  for(int i = 0; i < rocks.size(); i++){ 
+    rocks.get(i).move();     
+    rocks.get(i).show();
+    d = dist((float)rocks.get(i).getX(), (float)rocks.get(i).getY(), (float)bob.getX(), (float)bob.getY());
+    if(d <15){
+      health = health - 10;
+      rocks.remove(rocks.get(i));
+      i=0;
+    }
+  }  
+  
+}
+
+public void shoot(){
+  if(fire == true){
+    for(int i = 0; i < bullets.size(); i++){
+    bullets.get(i).move(); //need to make it i
+    bullets.get(i).show();
+    
+    }
   }
 }
 

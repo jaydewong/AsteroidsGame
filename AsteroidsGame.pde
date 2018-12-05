@@ -2,11 +2,16 @@ Spaceship bob = new Spaceship();  //make it a level based game? hit all monsters
 Star[] stars = new Star[200]; //use get color to collide with asteroids?
 ArrayList <Asteroids> rocks = new ArrayList <Asteroids>();
 ArrayList <Bullet> bullets = new ArrayList <Bullet>();
+// bullets
 boolean fire;
 int sum = 0; 
 int health = 100;
+int ammo = 0;
+// distance of asteroid
 float d;
-//your variable declarations here
+//controlling levels
+int level = 0;
+
 public void setup() 
 {
   size(600,600);
@@ -14,9 +19,7 @@ public void setup()
   for(int i = 0; i < stars.length; i++){
      stars[i] = new Star();
    }
-  for(int i = 0; i < 10 ; i++){
-     rocks.add(new Asteroids());
-   }
+   addRocks();
   //your code here
 }
 public void draw() 
@@ -33,7 +36,9 @@ public void draw()
   bob.move();
   bob.show();
   shot();
-  
+  if(level == 1){
+    health = 100;
+  }
 }
 
 public void keyPressed(){
@@ -54,10 +59,16 @@ public void keyPressed(){
     bob.setY((int)(Math.random()*600));
     bob.setPointDirection((int)(Math.random()*360));
   }
-  if(key == 'b'){
-    bullets.add(new Bullet(bob)); 
+  if(keyCode == 32){
+    //if(ammo < 20){
+    bullets.add(new Bullet(bob));
+    //ammo++;
     fire = true;
   }
+}
+
+public void mouseClicked(){
+    addRocks();
 }
 
 public void shot(){
@@ -82,7 +93,13 @@ public void asteroidMove(){
       rocks.remove(rocks.get(i));
       i=0;
     }
-  }  
+  }
+  if(rocks.size() == 0){
+    background(0);
+    level++;
+    text("Level One: Complete.", 220, 300,300);
+    text(" Levels still in development! Click to refresh.", 100, 400);
+  }
   
 }
 
@@ -94,6 +111,12 @@ public void shoot(){
     
     }
   }
+}
+
+public void addRocks(){
+  for(int i = 0; i < 10 ; i++){
+     rocks.add(new Asteroids());
+   }
 }
 
 
